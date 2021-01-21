@@ -4,7 +4,5 @@ import 'package:flutter_weather_bloc/utils/bloc_utils/base_bloc_context.dart';
 
 class GetWeatherMainBlocContext extends BlocContextBase<IGetWeatherMainBloc> {
   @override
-  void subscribe(IGetWeatherMainBloc bloc, BuildContext context) {
-    // TODO: implement subscribe
-  }
+  void subscribe(IGetWeatherMainBloc bloc, BuildContext context) {}
 }

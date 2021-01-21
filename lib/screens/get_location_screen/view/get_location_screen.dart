@@ -14,20 +14,45 @@ class _GetLocationScreenState extends State<GetLocationScreen> {
   void initState() {
     super.initState();
     _bloc = BlocProvider.of(context);
+    _bloc.loadBaseState(GetLocationBlocState.initialState);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Temp'),
-      ),
-      body: Center(
-        child: FlatButton(
-          onPressed: () => _bloc.getUserLocation(),
-          child: Text('Get location'),
+        appBar: AppBar(
+          title: Text('Temp'),
+          automaticallyImplyLeading: false,
         ),
-      ),
-    );
+        body: Center(
+          child: StreamBuilder(
+            stream: _bloc.outState,
+            builder: (BuildContext context,
+                AsyncSnapshot<GetLocationBlocState> snapshot) {
+              switch (snapshot.data) {
+                case GetLocationBlocState.initialState:
+                  return FlatButton(
+                      onPressed: () => _bloc.getUserLocation(),
+                      child: Text('Get Weather for location'));
+                  break;
+                case GetLocationBlocState.loadingState:
+                  return Text('loadingState');
+                  break;
+                case GetLocationBlocState.errorState:
+                  return Text('errorState');
+                  break;
+                case GetLocationBlocState.successState:
+                  return FlatButton(
+                      onPressed: () => _bloc.showWeatherModule(),
+                      child: Text('ShowWeathrModule'));
+                  break;
+                default:
+                  // assert(false, "Should never reach there");
+                  return Container();
+                  break;
+              }
+            },
+          ),
+        ));
   }
 }

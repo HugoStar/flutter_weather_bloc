@@ -16,7 +16,6 @@ abstract class BlocBase<T> {
 
   @protected
   Sink<BlocEvent<T>> get inUiEvents => _uiEventsController.sink;
-
   Stream<BlocEvent<T>> get outUiEvents => _uiEventsController.stream;
 
   void dispose() {

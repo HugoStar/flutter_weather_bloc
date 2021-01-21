@@ -25,7 +25,7 @@ class _GetWeatherMainScreenState extends State<GetWeatherMainScreen> {
       ),
       body: Center(
         child: FlatButton(
-          onPressed: () => _bloc.showWeatherForPosition(),
+          onPressed: () => _bloc.showMeWeather(),
           child: Text('Get Weather'),
         ),
       ),

@@ -3,12 +3,8 @@ import 'package:flutter/material.dart';
 class TabContainerContent {
   final Widget firstTab;
   final Widget secondTab;
-  final Widget thirdTab;
 
-  TabContainerContent(
-      {@required this.firstTab,
-      @required this.secondTab,
-      @required this.thirdTab});
+  TabContainerContent({@required this.firstTab, @required this.secondTab});
 }
 
 class TabContainerScreen extends StatefulWidget {
@@ -33,24 +29,16 @@ class _TabContainerScreenState extends State<TabContainerScreen> {
     _tabWidgets.add(widget._content.firstTab);
     _bottomBarItems.add(
       BottomNavigationBarItem(
-        icon: Icon(Icons.extension),
-        label: 'First',
+        icon: Icon(Icons.map),
+        label: 'Location',
       ),
     );
 
     _tabWidgets.add(widget._content.secondTab);
     _bottomBarItems.add(
       BottomNavigationBarItem(
-        icon: Icon(Icons.map),
-        label: 'Second',
-      ),
-    );
-
-    _tabWidgets.add(widget._content.thirdTab);
-    _bottomBarItems.add(
-      BottomNavigationBarItem(
-        icon: Icon(Icons.accessibility),
-        label: 'Third',
+        icon: Icon(Icons.location_city),
+        label: 'City',
       ),
     );
   }
