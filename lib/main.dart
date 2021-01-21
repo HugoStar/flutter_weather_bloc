@@ -13,7 +13,6 @@ class MyApp extends StatelessWidget {
       title: 'WeatherApp',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Injection.getCompositionRoot(),
     );

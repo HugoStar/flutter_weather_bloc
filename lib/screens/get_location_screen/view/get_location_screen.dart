@@ -13,7 +13,6 @@ class _GetLocationScreenState extends State<GetLocationScreen> {
   @override
   void initState() {
     super.initState();
-
     _bloc = BlocProvider.of(context);
   }
 

@@ -10,7 +10,7 @@ abstract class IGetLocationBloc extends BlocBase<GetLocationBlocEvent> {
 }
 
 class GetLocationBloc extends IGetLocationBloc {
-  final CurrentLocationApi currentLocation;
+  final ICurrentLocationApi currentLocation;
 
   GetLocationBloc({@required this.currentLocation});
 
