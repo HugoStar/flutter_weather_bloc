@@ -21,18 +21,19 @@ abstract class IGetLocationBloc extends BlocBase<GetLocationBlocEvent> {
   void getUserLocation();
   void showWeatherModule();
   void loadBaseState(GetLocationBlocState baseState);
-  Stream<GetLocationBlocState> get outState;
+  Stream<BlocState<GetLocationBlocState>> get outState;
 }
 
 class GetLocationBloc extends IGetLocationBloc {
   final ICurrentLocationApi _currentLocation;
   final IWeatherApiManager _weatherManager;
   Weather _weather;
-  final StreamController<GetLocationBlocState> _stateController =
-      StreamController<GetLocationBlocState>();
+  final StreamController<BlocState<GetLocationBlocState>> _stateController =
+      StreamController<BlocState<GetLocationBlocState>>();
 
-  Sink<GetLocationBlocState> get _inState => _stateController.sink;
-  Stream<GetLocationBlocState> get outState => _stateController.stream;
+  Sink<BlocState<GetLocationBlocState>> get _inState => _stateController.sink;
+  Stream<BlocState<GetLocationBlocState>> get outState =>
+      _stateController.stream;
 
   GetLocationBloc(
       {@required ICurrentLocationApi currentLocation,
@@ -48,18 +49,20 @@ class GetLocationBloc extends IGetLocationBloc {
 
   @override
   void getUserLocation() async {
-    _inState.add(GetLocationBlocState.loadingState);
+    _inState.add(BlocState(type: GetLocationBlocState.loadingState));
     Position position = await _currentLocation.determinePosition();
     final response = await _weatherManager.getWeatherForCoordinates(
         position.latitude, position.longitude);
     Weather weather = Weather.fromJson(jsonDecode(response.body));
     _weather = weather;
-    _inState.add(GetLocationBlocState.successState);
+    _inState.add(BlocState(
+        type: GetLocationBlocState.successState,
+        parameters: {'weather': _weather}));
   }
 
   @override
   void loadBaseState(GetLocationBlocState baseState) {
-    _inState.add(baseState);
+    _inState.add(BlocState(type: GetLocationBlocState.initialState));
   }
 
   @override

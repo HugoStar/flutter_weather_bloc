@@ -9,6 +9,13 @@ class BlocEvent<T> {
   BlocEvent({@required this.type, this.parameters});
 }
 
+class BlocState<T> {
+  T type;
+  Map<String, dynamic> parameters;
+
+  BlocState({@required this.type, this.parameters});
+}
+
 // Generic Interface for all BLoCs
 abstract class BlocBase<T> {
   StreamController<BlocEvent<T>> _uiEventsController =

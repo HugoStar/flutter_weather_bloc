@@ -20,8 +20,7 @@ class _GetWeatherMainScreenState extends State<GetWeatherMainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Get Weather For Loc'),
-        automaticallyImplyLeading: false,
+        title: Text('Get Weather'),
       ),
       body: Center(
         child: FlatButton(
